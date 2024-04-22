@@ -120,7 +120,7 @@ const decisionLastHour = () =>{
                                 console.log("Ya no puedes seguir agregando artículos. Maleta llena!") 
                                 flag = false;
                             }else{
-                                console.log("Puedes continuar agregando artículos...");
+                                console.log("Puedes llevar una cámara o algún otro artículo que no sea esencial pero deseable");
                             }
                         }else{
                             showMessage(weightArticleAdditionalVerify);
