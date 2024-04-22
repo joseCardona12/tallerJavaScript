@@ -13,7 +13,12 @@ const verifyEnterPassword = (passwordEnter) =>{
     //Verify the password contain eight caracters
     if(passwordEnter.length < 8){
         dataIncorrect.push("La longitud es incorrecta (Mínimo 8)");
+
+
     }
+
+    const numbers = [1,2,3,4,5,6,7,8,9];
+    passwordEnter.split("").some(number => numbers.includes(number));
     //Verify the password contain a number
     if(!/\d/.test(passwordEnter)){
         dataIncorrect.push("La contraseña no tiene almenos un número!...");
