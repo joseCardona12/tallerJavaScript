@@ -1,0 +1,4 @@
+footer.footer>div.footer-content{
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,45 @@
+@font-face {
+    font-family: "Helvetica";
+    src: url("../assets/HELVETICA/Helvetica.ttf");
+}
+
+html{
+    box-sizing: border-box;
+}
+
+:root{
+    --space-small: 10px;
+    --space-small-big: 20px;
+    --space-big:30px;
+    --space-super-big:40px;
+    --border-radius-small: 10px;
+    --background-main:rgb(248, 248, 248);
+    --background-first: rgb(255, 157, 45);
+    --border: rgb(197, 197, 197);
+    --color-first: #fff;
+    --color-second: rgb(245, 8, 8);
+    --color-three:green;
+    --color-four:blue;
+    --color-paragraph: #3f3f3f;
+}
+
+*,
+*::after,
+*::before{
+    box-sizing: inherit;
+    /* outline: 1px solid red; */
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    max-width: 90%;
+    margin: 0 auto;
+    font-family: "Helvetica", sans-serif;
+    margin-top: var(--space-small-big);
+    background-color: var(--background-main);
+}
+
+h1,h2,h3,h4,h5,h6{
+    margin: 5px;
+}

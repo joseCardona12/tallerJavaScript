@@ -1,0 +1,36 @@
+main.main>section.main-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    gap: var(--space-big);
+    text-align: center;
+}
+
+main.main>section.main-section>div.section-title{
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius-small);
+    padding: var(--space-small-big);
+    transition: background-color .2s ease,
+                transform .2s ease;
+    display: inherit;
+    flex-direction: column;
+    align-items: inherit;
+    justify-content: inherit;
+    height: 200px;
+}
+
+main.main>section.main-section>div.section-title:hover{
+    background-color: var(--background-first);
+    transform: scale(1.02);
+    border: 1px solid var(--background-first);
+    cursor: pointer;
+}
+
+main.main>section.main-section>div.section-title>div.title-image{
+    width: 20%;
+}
+
+main.main>section.main-section>div.section-title>div.title-image>img.image{
+    width: 100%;
+}

@@ -1,0 +1,59 @@
+
+/* Main -----------> main-section*/
+main.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    position: relative;
+}
+
+main.main>section.main-section{
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius-small);
+    padding: var(--space-small-big);
+    height: 80%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-super-big);
+}
+
+main.main>section.main-section>div.section-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-small-big);
+
+}
+
+main.main>section.main-section>div.section-content>div.content-box-first{
+    flex-basis: calc((100% - 20px) / 2);
+    border-radius: var(--border-radius-small);
+    padding: var(--space-small);
+    border: 1px solid var(--border);
+    width: 100%;
+    display: inherit;
+    justify-content: center;
+    transition: background-color .2s ease;
+    
+
+}
+
+main.main>section.main-section>div.section-content>div.content-box-first:hover{
+    background-color: var( --background-first);
+    border: 1px solid var(--background-first);
+    cursor: pointer;
+
+}
+
+main.main>section.main-section>div.section-content>div.content-box-first:hover>a.first-link{
+    color: var(--color-first);
+}
+
+main.main>section.main-section>div.section-content>div.content-box-first>a.first-link{
+    text-decoration: none;
+    color: #1d1d1d;
+}

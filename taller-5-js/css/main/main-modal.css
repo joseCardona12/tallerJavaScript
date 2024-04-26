@@ -1,0 +1,18 @@
+main.main>section.main-modal{
+    position: absolute;
+    border: 1px solid var(--border);
+    padding: var(--space-small-big);
+    border-radius: var(--border-radius-small);
+    background-color: var(--background-main);
+    color: var(--color-paragraph);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .2s ease;
+    pointer-events: none;
+    
+}
+
+main.main>section.main-modal.active{
+    opacity: 1;
+    pointer-events: initial;
+}

@@ -1,0 +1,24 @@
+main.main>section.main-modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 320px;
+    height: auto;
+    background-color: var(--background-first);
+    border-radius: var(--border-radius-small);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    margin-top: -600px;
+    transition: margin-top .6s ease;
+    padding: var(--space-small-big);
+    z-index: 2;
+}
+
+main.main>section.main-modal.active{
+    margin: 0;
+}

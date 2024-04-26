@@ -16,16 +16,27 @@ const separateEmailUserEnter = (emailUserEnter) =>{
     return emailUserEnterSeparate;
 }
 
-const verifyEmailUserEnter = (emailUserEnterSeparate) =>{
+const verifyAt = (emailUserEnterSeparate) =>{
     const emailUserEnterVerify = (emailUserEnterSeparate.includes("@"))
                                 ?true
                                 :false
     return emailUserEnterVerify;
 }
 
+const verifyPoint = (emailUserEnterSeparate) =>{
+    let point = 0;
+    emailUserEnterSeparate.forEach(element => {
+        
+    });
+}
+
 const VerifyIndexAt = (emailUserEnterSeparate) =>{
     const indexAt = emailUserEnterSeparate.indexOf("@");
-    const emailIndex = emailUserEnterSeparate[indexAt+2] === ".";
+
+    for(let i= indexAt; i<=emailUserEnterSeparate.lenght;i++){
+        
+    }
+    const indexPoint = emailUserEnterSeparate[indexAt] === ".";
     const indexEmailVerify = (emailIndex)
                             ?true
                             :false;

@@ -1,0 +1,55 @@
+main.main>section.main-section-first{
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius-small);
+    height: 80vh;
+    padding: var(--space-small-big);
+    
+}
+
+main.main>section.main-section-first>div.first-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main.main>section.main-section-first>div.first-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-super-big);
+    height: 80%;
+}
+main.main>section.main-section-first>div.first-content>div.first-circle{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    z-index: 1;
+}
+
+main.main>section.main-section-first>div.first-content>div.first-circle>div.circle-content>img.content-image{
+    width: 100%;
+}
+
+main.main>section.main-section-first>div.first-message{
+    display: flex;
+    justify-content: center;
+}
+
+main.main>section.main-section-first>div.first-message>p.message{
+    display: none;
+}
+
+main.main>section.main-section-first>div.first-message>p.message.good{
+    color: var(--background-first);
+    display: block;
+}
+
+main.main>section.main-section-first>div.first-message>p.message.bad{
+    color: var(--color-second);
+    display: block;
+}

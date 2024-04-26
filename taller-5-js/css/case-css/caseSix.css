@@ -1,0 +1,27 @@
+main.main>section.main-section>div.section-title>div.title-image{
+    width: 30%;
+}
+
+main.main>section.main-section>div.section-title:nth-child(1):hover{
+    background-color: var(--background-first);
+    color: var(--color-first);
+
+}
+
+main.main>section.main-section>div.section-title:nth-child(2):hover{
+    background-color: var(--color-three);
+    color: var(--color-first);
+    border: 1px solid var(--color-three);
+}
+
+main.main>section.main-section>div.section-title:nth-child(3):hover{
+    background-color: var(--color-second);
+    color: var(--color-first);
+    border: 1px solid var(--color-second);
+}
+
+main.main>section.main-section>div.section-title:nth-child(4):hover{
+    background-color: var(--color-four);
+    color: var(--color-first);
+    border: 1px solid var(--color-four);
+}
