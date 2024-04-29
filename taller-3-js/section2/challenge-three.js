@@ -24,7 +24,8 @@ const menu = () =>{ //Fucttion menu
     9.Cálculo de valor total del inventario
     10.Ordenamiento de productos
     11.Identificación de productos con posibles malas palabras en la descripción
-    12. Reporte general de productos.`)
+    12. Reporte general de productos.
+    13.Salir`)
 }
 const verifyDataNumber = (dataNumber) =>{ //Verify data enter user number
     return(!isNaN(dataNumber))
@@ -72,7 +73,6 @@ const showProducts = (products,message) =>{ //show products
         Descripción del prducto: ${product.description}
         `)
     })
-
 }
 const filterProductsForInterval = (products,intervalOne,intervalTwo) =>{ //Function filter product for inteval
     const productsForIntervalFilter = products.filter(product=>product.price >= intervalOne && product.price <= intervalTwo);
@@ -360,6 +360,9 @@ const challegengeThree = (flag) =>{ //Function first
                 Productos baratos ${cheapProducts}
                 Productos con mayor cantidad ${withGreaterQuantityProduct}
                 Productos con menor cantidad ${withSmallerQuantityProduct}`)
+                break;
+            case 13:
+                flag = false;
                 break;
             default:
                 console.log("La opción es inválida!...");

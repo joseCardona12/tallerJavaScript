@@ -4,7 +4,6 @@ const arrival = "2:00 a.m.";
 const board = "3:00 a.m.";
 const travelDestination = "Macondo";
 const password = "01110010_01101001_01110111_01101001";
-
 //Function show title 
 const showTitle = (arrival,city,board,travelDestination,password,charactersConvert) =>{
     console.log("***Caso 3***");
@@ -13,7 +12,6 @@ const showTitle = (arrival,city,board,travelDestination,password,charactersConve
     console.log(`La clave binaria es: ${password}
     convertida es: ${charactersConvert}`)
 }
-
 //Function for separate the values with outh under score password
 const WithOuthUnderScorePassword = (password) => password.split("_");
 const separatePasswordGroup = (withOutUnderScorePassword) =>{
@@ -60,11 +58,9 @@ const convertToCharacters = (passwordPotencyOne,passwordPotencyTwo,passwordPoten
     const charactersConvert = String.fromCharCode(passwordPotencyOne,passwordPotencyTwo,passwordPotencyThree,passwordPotencyFour);
     return charactersConvert;
 }
-
 const addParagraphHtml = (paragraph,charactersConvert) =>{
     return paragraph.innerHTML =`${charactersConvert}`
 }
-
 const caseThree = (password,paragraph,arrival,city,board,travelDestination) =>{
     const passwordWithOutUnderScore = WithOuthUnderScorePassword(password);  
     const passwordGroupSeparate = separatePasswordGroup(passwordWithOutUnderScore);
