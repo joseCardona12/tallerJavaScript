@@ -68,9 +68,10 @@ manejarAsincronia((message,greeting,flag)=>{
         R// La función seguiría funcionando normalmente. No obstante, el tiempo en ejecutarse el resolve tomaría más
         o menos tiempo. Después del tiempo obtenemos el resolve y activamos el then para mostrar algo después de 
         que la promesa se cumplió.
-    2.¿Cómo se comporta la función si la promesa es rechazada en lugar de resuelta?
+    2.¿Cómo se comporta la función si la promesa es rechazad a en lugar de resuelta?
         R//Si hay un rechazo, la función no mostraría nada, debido a que no estamos utilizando el reject para que
         el catch lo capture y muestre algún mensaje de error.
-    3.¿Puedes modificar la función para que el callback maneje diferentes tipos de información dependiendo del resultado de la promesa? S
+    3.¿Puedes modificar la función para que el callback maneje diferentes tipos de información dependiendo del resultado de la promesa?
+        R// SI, podemos utilizar un flag para generar estructuras condicionales.
         
 */
