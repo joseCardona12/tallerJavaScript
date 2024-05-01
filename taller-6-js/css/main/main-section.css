@@ -1,0 +1,27 @@
+main.main>section.main-section{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 60px;
+    height: 100vh;
+}
+main.main>section.main-section>div.section-image-first>pre{
+    display: flex;
+    justify-content: center;
+
+}
+
+main.main>section.main-section>div.section-image-first>pre>code>span.first-log{
+    color: rgba(153, 0, 255, 0.753);
+}
+main.main>section.main-section>div.section-content-image{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+main.main>section.main-section>div.section-content-image>div.image-first{
+    background-color: rgb(223, 245, 255);
+    padding: 10px;
+    border-radius: 10px;
+}

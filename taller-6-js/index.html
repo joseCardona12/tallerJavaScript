@@ -3,10 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main/main-section.css">
     <title>Document</title>
 </head>
 <body>
-    
-    <script src="section2/exerciseSix.js"></script>
+    <main class="main">
+        <section class="main-section">
+            <div class="section-image-first">
+                <pre>
+<code>
+    console.<span class="first-log">log</span>("Inicio del script");
+
+    setTimeout(() => {
+    console.<span class="first-log">log</span>("Primer setTimeout");
+    }, 0);
+
+    setTimeout(() => {
+    console.<span class="first-log">log</span>("Segundo setTimeout");
+    }, 0);
+
+    Promise.resolve("Promesa resuelta").then(console.log);
+    console.<span class="first-log">log</span>("Fin del script");
+</code>
+                </pre>
+                <button class="first-button" id="button">Inicia</button>
+            </div>
+            <div class="section-content-image">
+                <div class="image-first">
+                    <pre>
+<code>
+    console.log("Inicio del script");
+    console.log("Primer setTimeout");
+    console.log("Segundo setTimeout");
+    console.log("Promesa resuelta");
+    console.log("Fin del script")
+</code>
+                    </pre>
+                    <h3 class="first-title">Opción 1</h3>
+                </div>
+                <div class="image-first">
+                    <pre>
+<code>
+    console.log("Inicio del script");
+    console.log("Fin de script");
+    console.log("Promesa resuelta");
+    console.log("Segundo setTimeout");
+    console.log("Primer setTimeout")
+</code>   
+                    </pre>
+                    <h3 class="first-title">Opción 2</h3>
+                </div>
+                <div class="image-first">
+                    <pre>
+<code>
+    console.log("Inicio del script");
+    console.log("Fin de script");
+    console.log("Promesa resuelta");
+    console.log("Primer setTimeout");
+    console.log("Segundo setTimeout")
+</code>
+                    </pre>
+                    <h3 class="first-title">Opción 3</h3> 
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="section2/exerciseSeven.js"></script>
 </body>
 </html>
