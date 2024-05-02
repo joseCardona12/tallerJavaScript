@@ -22,45 +22,72 @@ argumento que no existe, solo existe en el ámbito de función, dentro de la fun
 Sin embargo, podemos corregir el error si inicializamos una variable "promesa" y posteriormente la pasamos como
 argumento a la función. En la función le asignamos nuestro constructor promesa y podemos trabajar
 */
+// let promesa;
+// function manejarAsincronia(callback,promesa){ //Define function
+//     console.log("Todavía no soy una promesa");
+//     const message = "¡Promesa cumplida y callback ejecutado!"
+//     const greeting = "Hola. Estoy pasando por el callback como argumento.";
+//     promesa = new Promise((resolve, reject)=>{
+//         console.log("Soy una promesa!...");
+//         setTimeout(()=>{
+//             let flag = false;
+//             if(flag){
+//                 resolve([message,greeting,flag]);
+//             }else{
+//                 reject(["Hubo un error en la promesa",flag])
+//             }    
+//         },2000)
+//     })
+//     promesa
+//         .then(([message,greeting,flag])=>{
+//             console.log("Se ejecutó bien la promesa...")
+//             callback(message,greeting,flag);
+//         })
+//         .catch(([error,flag])=>{
+//             console.log("Se ejecutó mal la promesa...")
+//             console.error("ERROR", error)
+//             callback(flag);
+//         })
+// }
+
+// manejarAsincronia((message,greeting,flag)=>{
+//     if(!flag){
+//         console.log("Soy un callback Reject")
+//         return;
+//     }
+//     console.log("Soy un callback Resolve")
+//         console.log(message);
+//         console.log(greeting)
+    
+// },promesa) 
+
+// function mensaje(){
+//     console.log("Se ejecutó ")
+// }
+
 let promesa;
-function manejarAsincronia(callback,promesa){ //Define function
-    console.log("Todavía no soy una promesa");
-    const message = "¡Promesa cumplida y callback ejecutado!"
-    const greeting = "Hola. Estoy pasando por el callback como argumento.";
-    promesa = new Promise((resolve, reject)=>{
-        console.log("Soy una promesa!...");
+const myFunction = (callback,promesa) =>{
+    promesa = new Promise((resolve, reject) => {
         setTimeout(()=>{
-            const flag = false;
-            if(flag){
-                resolve([message,greeting,flag]);
-            }else{
-                reject(["Hubo un error en la promesa",flag])
-            }    
-        },2000)
+            let flag = true;
+            if(!flag){
+                reject("Hubo un error, desde reject")
+            }
+            resolve()
+        },5000)
     })
+
     promesa
-        .then(([message,greeting,flag])=>{
-            console.log("Se ejecutó bien la promesa...")
-            callback(message,greeting,flag);
-        })
-        .catch(([error,flag])=>{
-            console.log("Se ejecutó mal la promesa...")
-            console.error("ERROR", error)
-            callback(flag);
+        .then(()=>{
+            callback();
         })
 }
 
-manejarAsincronia((message,greeting,flag)=>{
-    if(!flag){
-        console.log("Soy un callback Reject")
-        return;
-    }
-    console.log("Soy un callback Resolve")
-        console.log(message);
-        console.log(greeting)
-    
-},promesa) 
+myFunction(callback,promesa);
 
+function callback(){
+    console.log("Soy un callback")
+}
 
 // Invocar la función pasando un callback y la promesa
 /* Preguntas
