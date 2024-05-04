@@ -1,11 +1,12 @@
 
 const url = "data.json"; // url
-const enterOptionUser = () => prompt("Ingrese la opción del menú"); // Request option user
-const enterQuantityPeople = () => prompt("Ingrese la cantidad de personas..."); //Request quantity people
-const enterNumberRoom = () => prompt("Ingrese el número de la habitación"); //Request number room
-const enterNameGuest = () => prompt("Ingrese el nombre del huesped a cargo de los demás!...");
-const enterDateInitial = () => prompt("Ingrese la fecha de inicio: ");
-const enterDateFinal = () => prompt("Ingrese la fecha final: ");
+const enterOptionUser =       () => prompt("Ingrese la opción del menú"); // Request option user
+const enterQuantityPeople =   () => prompt("Ingrese la cantidad de personas..."); //Request quantity people
+const enterNumberRoom =       () => prompt("Ingrese el número de la habitación"); //Request number room
+const enterNameGuest =        () => prompt("Ingrese el nombre del huesped a cargo de los demás!...");
+const enterDateInitial =      () => prompt("Ingrese la fecha de inicio: ");
+const enterDateFinal =        () => prompt("Ingrese la fecha final: ");
+const enterIdUser =           () => prompt("Ingrese el id de la reservación");
 let idCount = 1;
 
 const loadData = () =>{ //Function load data
@@ -75,7 +76,7 @@ const verifyRoomAvailable = (rooms,numberRoomEnter) =>{
     }) 
 }
  const createReservation = (reservations,obtainRoom,quantityPeopleEnterTwo,numberRoomEnter,nameGuestEnter,dateInitial,dateFinal) =>{
-    console.log(obtainRoom)
+    console.log("Creando reservación!...");
     const generateId = () =>{
         return idCount++;
     } 
@@ -95,16 +96,17 @@ const verifyRoomAvailable = (rooms,numberRoomEnter) =>{
                 reject("Error al crear");
             }
             obtainRoom.availability = false;
-            resolve("La creación se realizó correctamente");
+            resolve("Se creó correctamente la reserva...");
         },2000)
     })
 }
-const showCurrentlyReservation = (reservations,rooms,roomTypes,nameGuestEnter) =>{
+const showDetailsReservation = (reservations,rooms,roomTypes,nameGuestEnter) =>{
+    console.log("Mostrando detalles...");
     return new Promise((resolve,reject)=>{
         const message = "Datos encontrados correctamente!...";
         setTimeout(()=>{
             const reserveFilter = reservations.filter(reserve =>reserve.nameGuest === nameGuestEnter); // filter for name user
-            if(!reserveFilter >0){ //verify content array reserveFilter
+            if(!reserveFilter.length >0){ //verify content array reserveFilter
                 reject("No se encontró ninguna reserva a este nombre") //Case error
             }
             reserveFilter.forEach(reserve=>{ 
@@ -124,13 +126,47 @@ const showCurrentlyReservation = (reservations,rooms,roomTypes,nameGuestEnter) =
         },2000)
     })
 } 
+const showCurrentlyReservation = (reservations,idUserEnter) =>{
+    console.log("Mostrando las reservaciones actuales...");
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            const reservesFilter = reservations.filter(reserve=>reserve.idReserve === idUserEnter); //Filter for name
+            if(!reservesFilter.length >0){ //Verify weight of array reservesFilter
+                reject("Upss. No se encontró ninguna reservación con este id"); 
+            }
+            reservesFilter.forEach(reserve=>{// show reserve
+                console.log(`
+                Reservaciones actuales de: ${reserve.nameGuest}
+                Número de la habitación: ${reserve.numberRoom}
+                Cantidad de personas reservadas: ${reserve.quantityPeople}
+                Fecha de inicio: ${reserve.dateInit}
+                Fecha final: ${reserve.dateFin}
+                ---------------------------------------------------------
+                `)
+            resolve("Reserva encontrada");
+            }) 
+        },3000)
+    })
+}
+const CancelReservation = (rooms,reservations,numberRoomEnter,idUserEnter) =>{
+    const roomFind = rooms.find(room=> room.number === parseInt(numberRoomEnter)); // find room for number
+    if(!roomFind){
+        console.log("Upps. No se pudo cancelar el elemento");
+    }
+    reservations.splice(idUserEnter-1, idUserEnter);
+    return "La reserva se canceló correctamente!...";
+
+}
 const reservationHotel = async() =>{ //Function first
     try{
         const reservations = []; // Reeservations
-        const data = await loadData();
+        const reservacionesCopy = [...reservations]; // Copy reservarions
+        const data = await loadData(); // function load data
         const {rooms,roomTypes} = data;
-        console.log("Habitaciones: ", rooms); //Show rooms
-        console.log("Tipos de habitaciones: ", roomTypes); //Show types rooms
+        const roomsCopy = [...rooms] // Copy arrays
+        const roomTypesCopy = [...roomTypes];
+        console.log("Habitaciones: ", roomsCopy); //Show rooms
+        console.log("Tipos de habitaciones: ", roomTypesCopy); //Show types rooms
         menu();
         let flag = true;
         while(flag){
@@ -143,7 +179,7 @@ const reservationHotel = async() =>{ //Function first
             switch(parseInt(optionUserEnter)){
                 case 1: //show rooms
                     const quantityPeopleEnter =  enterQuantityPeople(); // Request quantity people to reserve
-                    showRoomsAvailability(rooms,roomTypes,quantityPeopleEnter)
+                    showRoomsAvailability(roomsCopy,roomTypesCopy,quantityPeopleEnter)
                     break;
                 case 2: //Create reservation
                     const quantityPeopleEnterTwo = enterQuantityPeople();
@@ -161,12 +197,12 @@ const reservationHotel = async() =>{ //Function first
                     const dateInitial = enterDateInitial();
                     const dateFinal = enterDateFinal(); 
                     try{
-                        const obtainRoom = await verifyRoomAvailable(rooms,parseInt(numberRoomEnter)); //Verify rooms
+                        const obtainRoom = await verifyRoomAvailable(roomsCopy,parseInt(numberRoomEnter)); //Verify rooms
                         if(obtainRoom.availability){
                             const nameGuestEnter =  enterNameGuest();
-                            let reservationCreate = await createReservation(reservations,obtainRoom,quantityPeopleEnterTwo,numberRoomEnter,nameGuestEnter,dateInitial,dateFinal);
+                            let reservationCreate = await createReservation(reservacionesCopy,obtainRoom,quantityPeopleEnterTwo,numberRoomEnter,nameGuestEnter,dateInitial,dateFinal);
                             console.log(reservationCreate);
-                            console.log(reservations)
+                            console.log(reservacionesCopy)
                             console.log(rooms)
                         }
                     }catch(error){
@@ -176,15 +212,37 @@ const reservationHotel = async() =>{ //Function first
                 case 3:
                     try{
                         const nameGuestEnter = enterNameGuest();
-                        const currentlyReservationShow =  await showCurrentlyReservation(reservations,rooms,roomTypes,nameGuestEnter);
+                        const currentlyReservationShow =  await showDetailsReservation(reservacionesCopy,roomsCopy,roomTypesCopy,nameGuestEnter);
                         console.log(currentlyReservationShow)
                     }catch(error){
                         console.error(error)
                     }
                     break;
                 case 4:
+                    try{
+                        const idUserEnter = enterIdUser();
+                        const currentlyReservationShow = await showCurrentlyReservation(reservacionesCopy,parseInt(idUserEnter)); // show reserve
+                        console.log(currentlyReservationShow);
+                        const numberRoomEnter = enterNumberRoom(); //Reques number room of the reserve
+                        if(!verifyDataNumber(numberRoomEnter)){
+                            showMessage(verifyDataNumber(numberRoomEnter));
+                            return;
+                        }
+                        const reservationDeleted = CancelReservation(rooms,reservations,numberRoomEnter,idUserEnter); //Cancel reservation
+                        console.log(reservationDeleted);
+                    }catch(error){
+                        console.error(error);
+                    }
                     break;
                 case 5:
+                    try{
+                        const idUserEnter = enterIdUser();
+                        const currentlyReservationShow = await showCurrentlyReservation(reservacionesCopy,parseInt(idUserEnter)); // show reserve
+                        console.log(currentlyReservationShow);
+
+                    }catch(error){
+                        console.error(error)
+                    }
                     break;
                 case 6:
                     console.log("Saliendo del programa...");
