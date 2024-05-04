@@ -4,7 +4,7 @@ const enterOptionUser =       () => prompt("Ingrese la opción del menú"); // R
 const enterQuantityPeople =   () => prompt("Ingrese la cantidad de personas..."); //Request quantity people
 const enterNumberRoom =       () => prompt("Ingrese el número de la habitación"); //Request number room
 const enterNameGuest =        () => prompt("Ingrese el nombre del huesped a cargo de los demás!...");
-const enterDateInitial =      () => prompt("Ingrese la fecha de inicio: ");
+const enterDateInitial =      () => (prompt("Ingrese la fecha de inicio: "));
 const enterDateFinal =        () => prompt("Ingrese la fecha final: ");
 const enterIdUser =           () => prompt("Ingrese el id de la reservación");
 let idCount = 1;
@@ -154,8 +154,24 @@ const CancelReservation = (rooms,reservations,numberRoomEnter,idUserEnter) =>{
         console.log("Upps. No se pudo cancelar el elemento");
     }
     reservations.splice(idUserEnter-1, idUserEnter);
+    roomFind.availability = true;
     return "La reserva se canceló correctamente!...";
 
+}
+const editReservation = (reservations,numberRoomEnter, dateInitialEnter,dateFinalEnter) =>{
+    console.log("Editando la reserva...")
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            const reserveFind = reservations.find(reserve=>reserve.numberRoom === numberRoomEnter);
+            const flag = true;
+            if(!flag){
+                reject("No se encontró la reserva...");
+            }
+            reserveFind.dateInit = dateInitialEnter;
+            reserveFind.dateFin = dateFinalEnter;
+            resolve("Se editó correctamente la reserva");
+        },2000)
+    })
 }
 const reservationHotel = async() =>{ //Function first
     try{
@@ -203,7 +219,7 @@ const reservationHotel = async() =>{ //Function first
                             let reservationCreate = await createReservation(reservacionesCopy,obtainRoom,quantityPeopleEnterTwo,numberRoomEnter,nameGuestEnter,dateInitial,dateFinal);
                             console.log(reservationCreate);
                             console.log(reservacionesCopy)
-                            console.log(rooms)
+                            console.log(rooms);
                         }
                     }catch(error){
                         console.error(error)
@@ -218,7 +234,7 @@ const reservationHotel = async() =>{ //Function first
                         console.error(error)
                     }
                     break;
-                case 4:
+                case 4: // Cancel reservation
                     try{
                         const idUserEnter = enterIdUser();
                         const currentlyReservationShow = await showCurrentlyReservation(reservacionesCopy,parseInt(idUserEnter)); // show reserve
@@ -234,14 +250,23 @@ const reservationHotel = async() =>{ //Function first
                         console.error(error);
                     }
                     break;
-                case 5:
+                case 5: // Edit reservation
                     try{
-                        const idUserEnter = enterIdUser();
+                        const idUserEnter = enterIdUser(); // Request id user
                         const currentlyReservationShow = await showCurrentlyReservation(reservacionesCopy,parseInt(idUserEnter)); // show reserve
                         console.log(currentlyReservationShow);
-
                     }catch(error){
                         console.error(error)
+                    }
+                    try{
+                        const numberRoomEnter = enterNumberRoom();
+                        const dateInitialEnter = enterDateInitial();
+                        const dateFinalEnter = enterDateFinal();
+                        const reservationEdit = await editReservation(reservacionesCopy,numberRoomEnter,dateInitialEnter,dateFinalEnter);
+                        console.log(reservationEdit);
+                        console.log(reservacionesCopy)
+                    }catch(error){
+                        console.error(error);
                     }
                     break;
                 case 6:
